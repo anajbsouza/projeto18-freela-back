@@ -1,12 +1,15 @@
 import { Router } from "express";
-import { addProduct, getProducts } from "../controllers/product.controller.js";
+import { addProduct, getProducts, addPhoto } from "../controllers/product.controller.js";
 import { schemaValidation } from "../middlewares/schemaValidation.js";
 import { productSchema } from "../schemas/product.schema.js";
+import { photoSchema } from "../schemas/photo.schema.js";
 import { authValidation } from "../middlewares/authValidation.js";
 
 const productRouter = Router();
 
-productRouter.post("/add", schemaValidation(productSchema), authValidation, addProduct);
-productRouter.get("/add", getProducts);
+productRouter.post("/product", schemaValidation(productSchema), authValidation, addProduct);
+productRouter.get("/product", getProducts);
+productRouter.post("/photos", schemaValidation(photoSchema), addPhoto);
+
 
 export default productRouter;
